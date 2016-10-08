@@ -1,0 +1,26 @@
+version: '2'
+services:
+  proxy:
+    build: .
+    restart: always
+    ports:
+      - "8000:80"
+    networks:
+      - app
+  web:
+    image: ts-react-frontend
+    restart: always
+    networks:
+      app:
+        aliases:
+          - client
+  graphql:
+    image: ts-react-graphql
+    restart: always
+    networks:
+      app:
+        aliases:
+          - graphql
+
+networks:
+  app:
