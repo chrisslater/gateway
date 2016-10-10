@@ -4,9 +4,12 @@ services:
     build: .
     restart: always
     ports:
-      - "8000:80"
+      - "80:80"
     networks:
       - app
+    depends_on:
+      - web
+      - graphql
   web:
     image: ts-react-frontend
     restart: always
@@ -14,8 +17,10 @@ services:
       app:
         aliases:
           - client
+    depends_on:
+      - graphql
   graphql:
-    image: ts-react-graphql
+    image: ts-react
     restart: always
     networks:
       app:
