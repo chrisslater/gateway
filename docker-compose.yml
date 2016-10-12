@@ -26,6 +26,8 @@ services:
       app:
         aliases:
           - graphql
+    volumes:
+      - ../ts-react:/code
 
 networks:
   app:
